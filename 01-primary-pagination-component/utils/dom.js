@@ -5,4 +5,4 @@ const dom = {
     return div.children[0]
   }
 }
-module.exports = dom
+// module.exports = dom

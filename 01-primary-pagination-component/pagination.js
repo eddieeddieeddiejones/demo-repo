@@ -19,30 +19,50 @@ class Pagination {
     this.config.doms.next = dom.create('<button>下一页</button>')
     this.config.doms.last = dom.create('<button>末页</button>')
 
-    const { showNums, currentPage, pageNums } = this.config
-    Pagination.getNums(showNums, currentPage, pageNums)
+    this._createNumbers()
 
+    this.config.el.appendChild(this.config.doms.start)
+    this.config.el.appendChild(this.config.doms.prev)
+    this.config.el.appendChild(this.config.doms.numbers)
+    this.config.el.appendChild(this.config.doms.next)
+    this.config.el.appendChild(this.config.doms.last)
     return this
   }
   bindEvents () {
     return this
   }
+  _createNumbers () {
+    const { showNums, currentPage, pageNums } = this.config
+    const pageNumbers = Pagination.getNums(showNums, currentPage, pageNums)
+
+    const ul = document.createElement('ul')
+    const frag = document.createDocumentFragment()
+    pageNumbers.forEach(item => {
+      const li = dom.create(`<li>${ item }</li>`)
+      if (item === currentPage) {
+        li.classList.add('active')
+      }
+      frag.appendChild(li)
+    })
+    ul.appendChild(frag)
+    this.config.doms.numbers = ul
+  }
 
   static getNums(showNums, currentPage, pageNums) {
-    let start1 = Math.max(parseInt(currentPage - showNums / 2 + 1), 1)
-    let end1 = Math.min(parseInt(currentPage + showNums / 2), pageNums)
-    if (start1 === 1) {
-      end1 = start1 + showNums - 1
+    let start = Math.max(parseInt(currentPage - showNums / 2 + 1), 1)
+    let end = Math.min(parseInt(currentPage + showNums / 2), pageNums)
+    if (start === 1) {
+      end = start + showNums - 1
     }
-    if (end1 === pageNums) {
-      start1 = end1 - showNums + 1
+    if (end === pageNums) {
+      start = end - showNums + 1
     }
     let arr = []
-    for (let i = start1; i <= end1; i ++) {
+    for (let i = start; i <= end; i ++) {
       arr.push(i) 
     }
     return arr
   }
 }
 
-module.exports = Pagination
+// module.exports = Pagination
