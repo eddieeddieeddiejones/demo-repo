@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="pagination">
-    <button>首页</button>
+    <!-- <button>首页</button>
     <button>上一页</button>
     <ul>
       <li>1</li>
@@ -19,7 +19,19 @@
       <li>6</li>
     </ul>
     <button>下一页</button>
-    <button>末页</button>
+    <button>末页</button> -->
   </div>
+  <script src="./utils/dom.js"></script>
+  <script src="./pagination.js"></script>
+  <script>
+    const pages = document.querySelectorAll('.pagination')
+    new Pagination({
+      el: pages[0],
+      currentPage: 3,
+      showNums: 7,
+      pageCount: 34,
+    })
+
+  </script>
 </body>
 </html>
