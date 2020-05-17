@@ -19,8 +19,8 @@ class Pagination {
     this.config.doms.next = dom.create('<button>下一页</button>')
     this.config.doms.last = dom.create('<button>末页</button>')
 
-    const { showPages, currentPage, pageNums } = this.config
-    Pagination.getNums(showPages, currentPage, pageNums)
+    const { showNums, currentPage, pageNums } = this.config
+    Pagination.getNums(showNums, currentPage, pageNums)
 
     return this
   }
@@ -28,9 +28,20 @@ class Pagination {
     return this
   }
 
-  static getNums(showPages, currentPage, pageNums) {
-    
-    return [1, 2, 3, 4, 5, 6, 7]
+  static getNums(showNums, currentPage, pageNums) {
+    let start1 = Math.max(parseInt(currentPage - showNums / 2 + 1), 1)
+    let end1 = Math.min(parseInt(currentPage + showNums / 2), pageNums)
+    if (start1 === 1) {
+      end1 = start1 + showNums - 1
+    }
+    if (end1 === pageNums) {
+      start1 = end1 - showNums + 1
+    }
+    let arr = []
+    for (let i = start1; i <= end1; i ++) {
+      arr.push(i) 
+    }
+    return arr
   }
 }
 
