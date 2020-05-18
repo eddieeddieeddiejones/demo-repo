@@ -21,6 +21,9 @@
     <button>下一页</button>
     <button>末页</button> -->
   </div>
+
+  <div class="pagination"></div>
+
   <script src="./utils/dom.js"></script>
   <script src="./pagination.js"></script>
   <script>
@@ -32,6 +35,17 @@
       pageCount: 34,
     })
 
+    pages[0].addEventListener('pageChange', function (e) {
+      console.log(e.detail);
+    }, false)
+
+    new Pagination({
+      el: pages[1],
+      currentPage: 2,
+      showNums: 9,
+      pageCount: 40,
+      withQuery: true
+    })
   </script>
 </body>
 </html>

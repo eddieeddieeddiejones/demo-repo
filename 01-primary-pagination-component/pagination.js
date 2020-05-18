@@ -42,7 +42,7 @@ class Pagination {
     dom.on(this.config.el, 'click', '.pagination li, .pagination > button', (e, el) => {
       if (el.matches('.pagination li')) {
         this.config.currentPage = +el.dataset.index
-        console.log(this.config.currentPage)
+        
       }
       if (el.matches('.pagination > button')) {
         if (el.innerHTML === '首页') {
@@ -57,8 +57,11 @@ class Pagination {
         if (el.innerHTML === '末页') {
           this.config.currentPage = this.config.pageCount
         }
-        console.log(this.config.currentPage)
       }
+
+      const pageChange = new CustomEvent('pageChange', { detail: this.config.currentPage })
+      this.config.el.dispatchEvent(pageChange)
+      
       this.initHTML()
     })
     return this
