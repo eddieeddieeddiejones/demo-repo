@@ -19,6 +19,15 @@ class Pagination {
     this.config.doms.next = dom.create('<button>下一页</button>')
     this.config.doms.last = dom.create('<button>末页</button>')
 
+    if (this.config.currentPage === 1) {
+      this.config.doms.start.setAttribute('disabled', 'disabled')
+      this.config.doms.prev.setAttribute('disabled', 'disabled')
+    }
+    if (this.config.currentPage === this.config.pageCount) {
+      this.config.doms.next.setAttribute('disabled', 'disabled')
+      this.config.doms.last.setAttribute('disabled', 'disabled')
+    }
+
     this._createNumbers()
     
     this.config.el.innerHTML = ''
@@ -30,11 +39,28 @@ class Pagination {
     return this
   }
   bindEvents () {
-    dom.on(this.config.el, 'click', '.pagination li', (e, el) => {
-      this.config.currentPage = +el.dataset.index
-      console.log(this.config.currentPage)
+    dom.on(this.config.el, 'click', '.pagination li, .pagination > button', (e, el) => {
+      if (el.matches('.pagination li')) {
+        this.config.currentPage = +el.dataset.index
+        console.log(this.config.currentPage)
+      }
+      if (el.matches('.pagination > button')) {
+        if (el.innerHTML === '首页') {
+          this.config.currentPage = 1
+        }
+        if (el.innerHTML === '上一页') {
+          this.config.currentPage --
+        }
+        if (el.innerHTML === '下一页') {
+          this.config.currentPage ++
+        }
+        if (el.innerHTML === '末页') {
+          this.config.currentPage = this.config.pageCount
+        }
+        console.log(this.config.currentPage)
+      }
       this.initHTML()
-    })    
+    })
     return this
   }
   _createNumbers () {
