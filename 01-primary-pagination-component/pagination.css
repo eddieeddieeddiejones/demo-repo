@@ -6,28 +6,20 @@
 * {
   box-sizing: border-box;
 }
-body {
-  /* height: 100%; */
-  /* background-color: aquamarine; */
-  /* text-align: center; */
+button {
+  outline: none;
 }
+
 .pagination {
-  /* display: inline-block; */
   margin: 0 auto;
   margin-top: 100px;
   background-color: #D4D4D4;
   padding: 10px;
   display: table;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 .pagination > * {
   display: table-cell;
 }
-/* .pagination ul, .pagination li {
-  display: inline-block;
-} */
 .pagination ul, .pagination li {
   list-style: none;
 }
@@ -47,9 +39,7 @@ body {
   box-shadow: 0 1px 3px 0 #333;
 }
 .pagination > button {
-  /* display: inline-block; */
   height: 30px;
-  /* line-height: 30px; */
   border: none;
   margin-left: 5px;
   padding: 5px;

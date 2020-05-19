@@ -6,17 +6,19 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="demo"></div>
 <script>
-  const demo = document.querySelector('.demo')
+  str = '?page=34'
+  // str = str.replace(/^page=\d*$/, 'page=1')
+  str = str.replace(/page=\d*/, 'page=222')
+  console.log(str);
 
-  demo.addEventListener('demoEvent', function (e) {
-    console.log(e.detail); // 12
-    console.log(e.test); // undefined
-  }, false)
 
-  const demoEvent = new CustomEvent('demoEvent', {detail: 12, test: 111})
-  demo.dispatchEvent(demoEvent)
+  const p = 'The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+
+    const regex = /dog/gi;
+
+    console.log(p.replace(regex, 'ferret'));
+  
 </script>
 </body>
 </html>

@@ -23,7 +23,7 @@
   </div>
 
   <div class="pagination"></div>
-
+  <script src="./utils/bom.js"></script>
   <script src="./utils/dom.js"></script>
   <script src="./pagination.js"></script>
   <script>
@@ -41,10 +41,10 @@
 
     new Pagination({
       el: pages[1],
-      currentPage: 2,
+      currentPage: +bom.query.get('page') || 1,
       showNums: 9,
       pageCount: 40,
-      withQuery: true
+      queryString: true
     })
   </script>
 </body>

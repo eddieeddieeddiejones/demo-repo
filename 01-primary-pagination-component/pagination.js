@@ -59,10 +59,15 @@ class Pagination {
         }
       }
 
-      const pageChange = new CustomEvent('pageChange', { detail: this.config.currentPage })
-      this.config.el.dispatchEvent(pageChange)
+      if (this.config.queryString) {
+        bom.query.set(this.config.currentPage)
+      } else {
+        const pageChange = new CustomEvent('pageChange', { detail: this.config.currentPage })
+        this.config.el.dispatchEvent(pageChange)
+      }
       
       this.initHTML()
+
     })
     return this
   }
